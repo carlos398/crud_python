@@ -1,15 +1,57 @@
+def opciones():
+    
+    """
+    Esta funcion solicita que se ingrese la opcion de lo que la persona desea hacer
+    """
+    
+    print("Digite la letra segun lo que desee hacer: ")
+    print("C = CREAR PERSONA ")
+    opcion = input("por favor digitw su opcion")
+    
+    return opcion
+
+
 def capturar_datos():
-    cedula = int(input("Digite su numero de cedula por favor: "))
+    
+    """
+    Esta funcion captura los datos solicitados para almacenar en el archivo de texto
+    """
+    
+    cedula = input("Digite su numero de cedula por favor: ")
     nombres_persona = input("Por favor digite sus nombres: ")
     apellidos_persona = input("Por favor digite sus apellidos: ")
     direccion = input("Por favor digite su direccion: ")
-    telefono = int(input("Por favor digite su numero de telefono: "))
+    telefono = input("Por favor digite su numero de telefono: ")
     
     return cedula, nombres_persona, apellidos_persona, direccion, telefono
 
 
+def validador_campos():
+    
+    """
+    Esta funcion valida que los campos no esten vacios y solicita que se ingrese un dato
+    """
+    
+    cedula, nombres_persona, apellidos_persona, direccion, telefono = capturar_datos()
+    while cedula == "":
+        cedula = input("Digite su numero de cedula por favor: ")
+    while nombres_persona == "":
+        nombres_persona = input("Por favor digite sus nombres: ")
+    while apellidos_persona == "":
+        apellidos_persona = input("Por favor digite sus apellidos: ")
+    while direccion == "":
+        direccion = input("Por favor digite su direccion: ")
+    while telefono == "":
+        telefono = input("Por favor digite su numero de telefono: ")
+    
+    return cedula, nombres_persona, apellidos_persona, direccion, telefono
+    
+    
 def agregar_persona(cedula, nombres_persona, apellidos_persona, direccion, telefono):
     
+    """
+    funcion que inserta los datos capturados en un archivo de texto
+    """
     with open("./archivos/datos.txt", "a") as f:
         f.write("{cedula}  {nombres_persona}  {apellidos_persona}  {direccion}  {telefono} ".
                 format(
@@ -19,11 +61,16 @@ def agregar_persona(cedula, nombres_persona, apellidos_persona, direccion, telef
                     direccion=direccion,
                     telefono=telefono
                     ))
+        f.write("\n")
 
 
 def run():
-    cedula, nombres_persona, apellidos_persona, direccion, telefono = capturar_datos()
-    agregar_persona(cedula, nombres_persona, apellidos_persona, direccion, telefono)
+    
+    opcion = opciones()
+    
+    if opcion == "C":
+        cedula, nombres_persona, apellidos_persona, direccion, telefono = validador_campos()
+        agregar_persona(cedula, nombres_persona, apellidos_persona, direccion, telefono)
 
 
 if __name__ == "__main__":
