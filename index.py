@@ -7,6 +7,7 @@ def opciones():
     print("Digite la letra segun lo que desee hacer: ")
     print("M = MOSTRAR TODOS LOS REGISTROS ")
     print("C = CREAR PERSONA ")
+    print("B = BUSCAR PERSONA ")
     opcion = input("por favor digitw su opcion: ")
     opcion = opcion.upper()
     
@@ -74,6 +75,22 @@ def mostrar_personas():
     with open("./archivos/datos.txt", "r") as f:
         for persona in f:
             print (" {persona} ".format(persona=persona))
+            
+
+def buscar_persona():
+    
+    """
+        esta funcion busca a una persona exacta en el programa
+    """        
+    busqueda = input("Digite la cedula de la persona: ")
+    with open("./archivos/datos.txt", "r") as f:
+        for persona in f:
+            patron_de_busqueda = persona[:10]
+            if patron_de_busqueda == busqueda:
+                print (persona)
+                break
+            else:
+                continue
 
 
 def run():
@@ -85,7 +102,8 @@ def run():
     elif opcion == "C":
         cedula, nombres_persona, apellidos_persona, direccion, telefono = validador_campos()
         agregar_persona(cedula, nombres_persona, apellidos_persona, direccion, telefono)
-
+    elif opcion == "B":
+        buscar_persona()
 
 if __name__ == "__main__":
     run()
