@@ -5,8 +5,10 @@ def opciones():
     """
     
     print("Digite la letra segun lo que desee hacer: ")
+    print("M = MOSTRAR TODOS LOS REGISTROS ")
     print("C = CREAR PERSONA ")
-    opcion = input("por favor digitw su opcion")
+    opcion = input("por favor digitw su opcion: ")
+    opcion = opcion.upper()
     
     return opcion
 
@@ -62,13 +64,25 @@ def agregar_persona(cedula, nombres_persona, apellidos_persona, direccion, telef
                     telefono=telefono
                     ))
         f.write("\n")
+        
+
+def mostrar_personas():
+    
+    """
+        esta funcion muestra todos los registros de la tabla
+    """        
+    with open("./archivos/datos.txt", "r") as f:
+        for persona in f:
+            print (" {persona} ".format(persona=persona))
 
 
 def run():
     
     opcion = opciones()
     
-    if opcion == "C":
+    if opcion == "M":
+        mostrar_personas()
+    elif opcion == "C":
         cedula, nombres_persona, apellidos_persona, direccion, telefono = validador_campos()
         agregar_persona(cedula, nombres_persona, apellidos_persona, direccion, telefono)
 
