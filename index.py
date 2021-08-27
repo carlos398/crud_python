@@ -91,6 +91,27 @@ def buscar_persona():
                 break
             else:
                 continue
+            
+
+def eliminar_persona():
+    
+    """
+        esta funcion busca a una persona exacta en el programa
+    """        
+    busqueda = input("Digite la cedula de la persona que desea eliminar: ")
+    with open("./archivos/datos.txt", "r") as f:
+        for persona in f:
+            patron_de_busqueda = persona[:10]
+            if patron_de_busqueda == busqueda:
+                print("El usuario que desea eliminar es: ")
+                print (" {persona} ")
+                eliminar = input("Si desea eliminarlo escriba S de lo contrario ponga N: ")
+                eliminar = eliminar.upper()
+                if eliminar == "S":
+                    pass
+            else:
+                print("no se ha encontrado una persona con esa cedula.")
+            
 
 
 def run():
