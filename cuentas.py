@@ -42,7 +42,7 @@ def calculadora():
     date_now = datetime.datetime.strftime(date_now, '%d/%m/%Y')
     
     with open("./archivos/cuentas.txt", "a") as f:
-        f.write(date_now)
+        f.write(date_now+'\n')
         
     for i in range(len(nombre_devengos)):
         ticket.append('| se descontaron.... {dinero} que se gastaran en.... {nombre} '.format(
