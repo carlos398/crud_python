@@ -1,1 +1,2 @@
  name: carlos email: carlosarp2000@gmail.com password: shimoneta
+ name: juan email: juan@juan.com password: 1235 
